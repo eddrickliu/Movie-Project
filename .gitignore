@@ -34,4 +34,5 @@
 .idea
 CMakeLists.txt
 cmake-build-debug
-.DS_Store
+/.DS_Store
+.comedy.cpp.swp

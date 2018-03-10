@@ -19,9 +19,9 @@ using namespace std;
 class MovieStore {
 private:
 	//Three different vectors for the three different types of movies
-	vector<drama *> dramas;
-	vector<comedy *> comedies;
-	vector<Classic *> classics;
+	vector<Comedy *> comedies;
+	vector<Drama *> dramas;
+	vector<classic *> classics;
 	vector<int, Customer *> customers;
 
 	vector<string> split(const string &s, char delim);
