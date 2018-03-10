@@ -51,7 +51,7 @@ void MovieStore::readMovies(string fileName) {
 			vector<string> classicInfo = split(movieInfo[4], ' ');
 			int month = stoi(classicInfo[1]);
 			int year = stoi(classicInfo[2]);
-			Classic *c = new Classic(movieInfo[2], movieInfo[3], stock,
+			classic *c = new classic(movieInfo[2], movieInfo[3], stock,
 			                         classicInfo[0], year, month);
 			classics.push_back(c);
 		}

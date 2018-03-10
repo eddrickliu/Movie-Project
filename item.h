@@ -11,20 +11,31 @@
 #ifndef Item_h
 #define Item_h
 
-class Item{
+using namespace std;
+
+class Item {
 private:
-    int stock; // >0
-    std::string title; // Null check
+	int stock; // >0
+	std::string title; // Null check
+
 public:
-    explicit Item(int, std::string name);
-    ~Item();
-    bool setStock(int);
-    bool setTitle(std::string name);
-    std::string getTitle();
-    int getStock();
-    friend std::ostream& operator<<(std::ostream& os, const Item& i);
-    friend std::istream& operator>>(std::istream& is, Item& i);
-    virtual bool operator==(const Item &i) const = 0;
+	explicit Item(int, string name);
+
+	~Item();
+
+	bool setStock(int);
+
+	bool setTitle(std::string name);
+
+	std::string getTitle();
+
+	int getStock();
+
+	friend std::ostream &operator<<(std::ostream &os, const Item &i);
+
+	friend std::istream &operator>>(std::istream &is, Item &i);
+
+	virtual bool operator==(const Item &i) const = 0;
 };
 
 #endif /* Item_h */
