@@ -2,12 +2,12 @@
 
 #include "classic.h"
 
-explicit Classic(int stock, std::string director, std::string title,
-                 std::string actor, int month, int year) {
-
+Classic::Classic(int stock, std::string director, std::string title,
+                 std::string actor, int month, int year) : Movie(year, director, title, stock){
+    
 }
 
-~Classic() {
+Classic::~Classic() {
 
 }
 
@@ -35,6 +35,6 @@ istream &operator>>(istream &is, Item &i) {
 
 }
 
-bool operator==(const Item &i) const {
+bool Classic::operator==(const Item &i) const {
 
 }

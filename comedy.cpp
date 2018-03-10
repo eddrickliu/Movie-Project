@@ -4,23 +4,23 @@
 
 using namespace std;
 
-explicit Comedy(int stock, std::string director, std::string title,
-                int year) {
-
+Comedy::Comedy(int stock, std::string director, std::string title,
+               int year) : Movie(year, director, title, stock){
+    
 }
 
-~Comedy() {
+Comedy::~Comedy() {
 
 }
 
 ostream &operator<<(ostream &os, const Item &i){
-
+    
 }
 
 istream &operator>>(istream &is, Item &i) {
 
 }
 
-bool operator==(const Item &i) const {
+bool Comedy::operator==(const Item &i) const {
 
 }

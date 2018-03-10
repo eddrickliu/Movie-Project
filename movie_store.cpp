@@ -5,7 +5,7 @@
 #include<fstream>
 #include <sstream>
 
-explicit MovieStore::MovieStore() {
+MovieStore::MovieStore() {
 
 }
 
@@ -74,11 +74,39 @@ void MovieStore::readCustomers(string fileName) {
 
 //Method that takes in a string that is the file name containing all commands
 void MovieStore::readCommands(string fileName) {
-	ifstream infile(fileName);
-	string line;
-	while (infile >> line) {
-		// TODO do this
-	}
+    string line,command,dvd,movieType;
+    int id;
+    
+        ifstream myfile(fileName);
+        if (!myfile)  // Check if can open the file
+        {
+            cout << "Can't open the file\n";
+        }
+        
+        while (myfile.good())  // Get next line
+        {
+            myfile>>command;
+            if(command == "I"){
+                inventory();
+            }
+            else if(command == "H"){
+                myfile>>id;
+                hitory(id);
+            }
+            else if(command == "B"){
+                myfile>>id>>dvd>>movieType;
+                borrowItem(id, )
+            }
+            else if(command == "R"){
+                returnItem(id, )
+            }
+            else{
+                cout<<"Bad input!";
+            }
+            
+            
+        }
+        myfile.close(); // Close input file stream
 }
 
 //sorts all Dramas

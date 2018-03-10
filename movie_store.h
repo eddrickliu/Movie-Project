@@ -11,16 +11,16 @@
 #include <vector>
 #include "drama.h"
 #include "customer.h"
-#include "comedy.h";
-#include "classic.h";
+#include "comedy.h"
+#include "classic.h"
 
 using namespace std;
 
 class MovieStore {
 private:
 	//Three different vectors for the three different types of movies
-	vector<drama *> dramas;
-	vector<comedy *> comedies;
+	vector<Drama *> dramas;
+	vector<Comedy *> comedies;
 	vector<Classic *> classics;
 	vector<int, Customer *> customers;
 

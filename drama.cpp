@@ -2,11 +2,11 @@
 
 #include "drama.h"
 
-explicit Drama(int stock, std::string director, std::string title, int year) {
-
+Drama::Drama(int stock, std::string director, std::string title, int year) : Movie(year, director, title, stock){
+    
 }
 
-~Drama() {
+Drama::~Drama() {
 
 }
 
@@ -18,6 +18,6 @@ istream &operator>>(istream &is, Item &i) {
 
 }
 
-bool operator==(const Item &i) const {
+bool Drama::operator==(const Item &i) const {
 
 }

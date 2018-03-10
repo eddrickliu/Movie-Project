@@ -6,7 +6,8 @@
 //  Copyright © 2018 Eddrick Liu. All rights reserved.
 //
 #include <string>
-#include “Movie.h”
+#include "movie.h"
+using namespace std;
 
 #ifndef Classic_h
 #define Classic_h
@@ -25,7 +26,7 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Item& i);
     friend std::istream& operator>>(std::istream& is, Item& i);
     bool operator==(const Item &i) const;
-}
+};
 
 
 #endif /* Classic_h */

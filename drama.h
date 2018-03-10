@@ -6,19 +6,20 @@
 //  Copyright © 2018 Eddrick Liu. All rights reserved.
 //
 #include <string>
-#include “Movie.h”
+#include "movie.h"
+using namespace std;
 
 #ifndef Drama_h
 #define Drama_h
 
-class drama : public Movie {
+class Drama : public Movie {
 public:
-    explicit drama(int stock ,std::string director,std::string title ,int year);
-    ~drama();
-    riend std::ostream& operator<<(std::ostream& os, const Item& i);
+    explicit Drama(int stock ,std::string director,std::string title ,int year);
+    ~Drama();
+    friend std::ostream& operator<<(std::ostream& os, const Item& i);
     friend std::istream& operator>>(std::istream& is, Item& i);
     bool operator==(const Item &i) const;
-}
+};
 
 
 #endif /* Drama_h */
