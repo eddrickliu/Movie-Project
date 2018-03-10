@@ -6,10 +6,10 @@
 //  Copyright © 2018 Eddrick Liu. All rights reserved.
 //
 #include <string>
-#include “Movie.h”
+#include “movie.h”
 
-#ifndef Classic_h
-#define Classic_h
+#ifndef classic_h
+#define classic_h
 
 class Classic : public Movie {
 private:
@@ -28,4 +28,4 @@ public:
 }
 
 
-#endif /* Classic_h */
+#endif /* classic_h */
