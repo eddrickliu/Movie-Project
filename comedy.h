@@ -1,5 +1,5 @@
 //
-//  Comedy.h
+//  comedy.h
 //  Ass4
 //
 //  Created by Eddrick Liu on 3/7/18.
@@ -13,10 +13,10 @@
 #define Comedy_h
 
 
-class Comedy : public Movie{
+class comedy : public Movie{
 public:
-    explicit Comedy(int stock ,std::string director,std::string title ,int year);
-    ~Comedy();
+    explicit comedy(int stock ,std::string director,std::string title ,int year);
+    ~comedy();
     friend std::ostream& operator<<(std::ostream& os, const Item& i);
     friend std::istream& operator>>(std::istream& is, Item& i);
     bool operator==(const Item &i) const;

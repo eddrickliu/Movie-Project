@@ -1,5 +1,5 @@
 //
-//  Drama.h
+//  drama.h
 //  Ass4
 //
 //  Created by Eddrick Liu on 3/7/18.
@@ -11,10 +11,10 @@
 #ifndef Drama_h
 #define Drama_h
 
-class Drama : public Movie {
+class drama : public Movie {
 public:
-    explicit Drama(int stock ,std::string director,std::string title ,int year);
-    ~Drama();
+    explicit drama(int stock ,std::string director,std::string title ,int year);
+    ~drama();
     riend std::ostream& operator<<(std::ostream& os, const Item& i);
     friend std::istream& operator>>(std::istream& is, Item& i);
     bool operator==(const Item &i) const;

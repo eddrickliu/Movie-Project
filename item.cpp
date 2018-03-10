@@ -6,7 +6,7 @@
 //  Copyright © 2018 Eddrick Liu. All rights reserved.
 //
 
-#include "Item.h"
+#include "item.h"
 #include <iostream>
 #include <stdio.h>
 #include <string>

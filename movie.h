@@ -5,7 +5,7 @@
 //  Created by Eddrick Liu on 3/7/18.
 //  Copyright © 2018 Eddrick Liu. All rights reserved.
 //
-#include "Item.h"
+#include "item.h"
 #include <string>
 
 #ifndef Movie_h
