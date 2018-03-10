@@ -39,11 +39,11 @@ bool Movie::setDirector(std::string director) {
 	return true;
 }
 
-int Movie::getYear() {
+int Movie::getYear() const{
 	return year;
 }
 
-std::string Movie::getDirector() {
+std::string Movie::getDirector() const{
 	return director;
 }
 

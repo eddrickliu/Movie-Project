@@ -27,9 +27,9 @@ public:
 
 	bool setTitle(std::string name);
 
-	std::string getTitle();
+	string getTitle() const;
 
-	int getStock();
+	int getStock() const;
 
 	friend std::ostream &operator<<(std::ostream &os, const Item &i);
 

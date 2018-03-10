@@ -4,12 +4,12 @@
 
 using namespace std;
 
-Comedy::Comedy(int stock, std::string director, std::string title,
-                int year) {
+Comedy::Comedy(string director, int stock, string title, int year) :
+		Movie(year, director, title, stock) {
 
 }
 
-~Comedy() {
+~Comedy::Comedy() {
 
 }
 
@@ -21,6 +21,6 @@ istream &operator>>(istream &is, Item &i) {
 
 }
 
-bool operator==(const Item &i) const {
+bool operator==(const Comedy &i) const {
 
 }

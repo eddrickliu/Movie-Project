@@ -7,7 +7,7 @@ Drama::Drama(string director, int stock, string title, int year) :
 
 }
 
-~Drama() {
+~Drama::Drama() {
 
 }
 
@@ -19,9 +19,11 @@ istream &operator>>(istream &is, Item &i) {
 
 }
 
-bool Drama::operator==(const Item &i) const {
-	if (typeid(i) == typeid(Drama)) {
-		return Movie::operator==(i);
-	}
-	return false;
+bool Drama::operator==(const Drama &i) const {
+	return (
+			i.getStock() == this->getStock()
+			&& i.getTitle() == this->getTitle()
+			&& i.getDirector() == this->getDirector()
+			&& i.getYear() == this->getYear()
+	)
 }

@@ -26,9 +26,9 @@ public:
 
 	bool setYear(int year);
 
-	int getYear();
+	int getYear() const;
 
-	std::string getDirector();
+	std::string getDirector() const;
 
 	friend std::ostream &operator<<(std::ostream &os, const Item &i);
 
