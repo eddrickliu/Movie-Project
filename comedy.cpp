@@ -4,7 +4,7 @@
 
 using namespace std;
 
-explicit Comedy(int stock, std::string director, std::string title,
+Comedy::Comedy(int stock, std::string director, std::string title,
                 int year) {
 
 }

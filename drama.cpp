@@ -16,7 +16,7 @@ ostream &operator<<(ostream &os, const Item &i) {
 }
 
 istream &operator>>(istream &is, Item &i) {
-	
+
 }
 
 bool Drama::operator==(const Item &i) const {

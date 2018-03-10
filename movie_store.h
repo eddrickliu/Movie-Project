@@ -21,7 +21,7 @@ private:
 	//Three different vectors for the three different types of movies
 	vector<Comedy *> comedies;
 	vector<Drama *> dramas;
-	vector<classic *> classics;
+	vector<Classic *> classics;
 	vector<int, Customer *> customers;
 
 	vector<string> split(const string &s, char delim);
