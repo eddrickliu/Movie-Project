@@ -19,13 +19,8 @@ using namespace std;
 class MovieStore {
 private:
 	//Three different vectors for the three different types of movies
-<<<<<<< HEAD
-	vector<Drama *> dramas;
-	vector<Comedy *> comedies;
-=======
 	vector<Comedy *> comedies;
 	vector<Drama *> dramas;
->>>>>>> master
 	vector<Classic *> classics;
 	vector<int, Customer *> customers;
 

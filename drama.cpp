@@ -2,14 +2,7 @@
 
 #include "drama.h"
 
-<<<<<<< HEAD
 Drama::Drama(int stock, std::string director, std::string title, int year) : Movie(year, director, title, stock){
-    
-=======
-Drama::Drama(string director, int stock, string title, int year) :
-		Movie(year, director, title, stock) {
-
->>>>>>> master
 }
 
 Drama::~Drama() {
@@ -25,13 +18,8 @@ istream &operator>>(istream &is, Item &i) {
 }
 
 bool Drama::operator==(const Item &i) const {
-<<<<<<< HEAD
-
-}
-=======
 	if (typeid(i) == typeid(Drama)) {
 		return Movie::operator==(i);
 	}
 	return false;
 }
->>>>>>> master
