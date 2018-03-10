@@ -50,9 +50,5 @@ istream &operator>>(istream &is, Item &i) {
 }
 
 bool Classic::operator==(const Item &i) const {
-
-<<<<<<< HEAD
-=======
     return Movie::operator==(i);
->>>>>>> master
 }
