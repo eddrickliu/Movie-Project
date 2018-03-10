@@ -1,5 +1,5 @@
 //
-//  Movie.h
+//  movie.h
 //  Ass4
 //
 //  Created by Eddrick Liu on 3/7/18.
@@ -8,8 +8,8 @@
 #include "item.h"
 #include <string>
 
-#ifndef Movie_h
-#define Movie_h
+#ifndef movie_h
+#define movie_h
 
 class Movie : public Item {
 private:
@@ -36,4 +36,4 @@ public:
 	bool operator==(const Item &i) const;
 };
 
-#endif /* Movie_h */
+#endif /* movie_h */
