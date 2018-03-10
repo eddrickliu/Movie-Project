@@ -2,18 +2,18 @@
 
 #include "classic.h"
 
-explicit Classic(int stock, std::string director, std::string title,
+explicit Classic::Classic(int stock, std::string director, std::string title,
                  std::string actor, int month, int year) :
 Movie(year, director, title, stock ){
     setActor(actor);
     setMonth(month);
 }
 
-~Classic() {
+Classic::~Classic() {
 
 }
 
-bool setActor(std::string actor) {
+bool Classic::setActor(std::string actor) {
     if ( actor  == ""){
         std::cout << "Cant Set Actor" << std::endl;
         return false;
@@ -22,11 +22,11 @@ bool setActor(std::string actor) {
     return true;
 }
 
-string getActor() {
+string Classic::getActor() {
     return actor;
 }
 
-bool setMonth(int month) {
+bool Classic::setMonth(int month) {
     if ( month > 12 || month < 1){
         std::cout << "Cant Set Month" << std::endl;
         return false;
@@ -35,21 +35,24 @@ bool setMonth(int month) {
     return true;
 }
 
-int getMonth() {
+int Classic::getMonth() {
     return month;
 }
 
-ostream &operator<<(ostream &os, const Item &i) {
+ostream Classic::&operator<<(ostream &os, const Item &i) {
     os << i.year << i.director << i.title << i.stock << i.actor << i.swagger;
-    return os
+    return os;
 }
 
-istream &operator>>(istream &is, Item &i) {
+istream Classic::&operator>>(istream &is, Item &i) {
     is >> i.year >> i.director >> i.title >> i.stock;
     return is;
 }
 
-bool operator==(const Item &i) const {
+bool Classic::operator==(const Classic &c) const {
 
-    return Movie::operator==(i);
+    if (Movie::operator==(c) == false) {
+        return false;
+    }
+    return ( this->month == m.month) &&  ( this->actor == m.actor);
 }

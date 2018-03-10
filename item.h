@@ -32,7 +32,7 @@ public:
 
 	friend std::istream &operator>>(std::istream &is, Item &i);
 
-	virtual bool operator==(const Item &i) const = 0;
+	virtual bool operator==(const Item &i) const;
 };
 
 #endif /* Item_h */

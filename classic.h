@@ -20,7 +20,7 @@ public:
 	explicit Classic(int stock, std::string director, std::string title,
 	                 std::string actor, int month, int year);
 
-	~classic();
+	~Classic();
 
 	bool setActor(std::string);
 
@@ -34,7 +34,7 @@ public:
 
 	friend std::istream &operator>>(std::istream &is, Item &i);
 
-	bool operator==(const Item &i) const;
+	bool operator==(const Classic &i) const;
 }
 
 

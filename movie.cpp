@@ -47,22 +47,18 @@ std::string Movie::getDirector(){
     return director;
 }
 
-bool Movie::operator==(const Item &i) const{
-    if ( this->stock != i.stock){
-        return false;
-    }else if ( this->title != i.title){
-        return false;
-    }else if ( this->director != i.director){
-        return false;
-    }else if ( this->year != i.year){
+
+
+bool Movie::operator==(const Movie &m) const{
+    if (Item::operator==(m) == false) {
         return false;
     }
-    return true;
+    return ( this->director == m.director) &&  ( this->year == m.year);
 }
 
 std::ostream& operator<<(std::ostream& os, const Item& i){
     os << i.year << i.director << i.title << i.stock;
-    return os
+    return os;
 }
 
 std::istream& operator>>(std::istream& is, Item& i){

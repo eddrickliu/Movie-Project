@@ -33,7 +33,7 @@ public:
 
 	friend std::istream &operator>>(std::istream &is, Item &i);
 
-	bool operator==(const Item &i) const;
+	bool operator==(const Movie &m) const;
 };
 
 #endif /* movie_h */

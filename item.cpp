@@ -76,6 +76,10 @@ std::ostream& operator<<(std::ostream& os, const Item& i){
  
  */
 std::istream& operator>>(std::istream& is, Item& i){
-    is >> i.title >> i.stock;
+    is >> i.getTitle() >> i.getStock();
     return is;
+}
+
+bool Item::operator==(const Item &i) const{
+    return (this->stock == i.stock) && (this->title ==i.title);
 }
