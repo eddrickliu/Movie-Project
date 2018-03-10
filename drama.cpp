@@ -2,12 +2,10 @@
 
 #include "drama.h"
 
-Drama::Drama(string director, int stock, string title, int year) :
-		Movie(year, director, title, stock) {
-
+Drama::Drama(int stock, std::string director, std::string title, int year) : Movie(year, director, title, stock){
 }
 
-~Drama() {
+Drama::~Drama() {
 
 }
 

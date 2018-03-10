@@ -2,20 +2,20 @@
 
 #include "classic.h"
 
-explicit Classic(int stock, std::string director, std::string title,
+Classic::Classic(int stock, std::string director, std::string title,
                  std::string actor, int month, int year) :
 Movie(year, director, title, stock ){
     setActor(actor);
     setMonth(month);
 }
 
-~Classic() {
+Classic::~Classic() {
 
 }
 
 bool setActor(std::string actor) {
     if ( actor  == ""){
-        std::cout << "Cant Set Actor" << std::endl;
+        cout << "Cant Set Actor" << endl;
         return false;
     }
     this->actor  = actor;
@@ -49,7 +49,6 @@ istream &operator>>(istream &is, Item &i) {
     return is;
 }
 
-bool operator==(const Item &i) const {
-
+bool Classic::operator==(const Item &i) const {
     return Movie::operator==(i);
 }

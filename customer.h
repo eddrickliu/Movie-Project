@@ -7,8 +7,8 @@
 #define ASSIGNMENT4_CUSTOMER_H
 
 #include <vector>
-#import "movie.h";
-#import "item.h";
+#import "movie.h"
+#import "item.h"
 
 using namespace std;
 
@@ -31,9 +31,9 @@ public:
 
 	// Add movie to the map
 	// Also Add movie the history
-	bool borrowItem(Item &item) const;
+	bool borrowItem(Item *item) const;
 
-	bool returnItem(Item &item) const;
+	bool returnItem(Item *item) const;
 };
 
 #endif

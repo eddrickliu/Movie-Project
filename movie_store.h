@@ -11,8 +11,8 @@
 #include <vector>
 #include "drama.h"
 #include "customer.h"
-#include "comedy.h";
-#include "classic.h";
+#include "comedy.h"
+#include "classic.h"
 
 using namespace std;
 

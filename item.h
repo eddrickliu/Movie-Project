@@ -7,11 +7,10 @@
 //
 
 #include <string>
+using namespace std;
 
 #ifndef Item_h
 #define Item_h
-
-using namespace std;
 
 class Item {
 private:
