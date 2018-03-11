@@ -24,7 +24,7 @@ private:
 	vector<Comedy *> comedies;
 	vector<Drama *> dramas;
 	vector<Classic *> classics;
-	array<list<Customer*>,10> customers;
+	array<vector<Customer*>,10> customers;
 
 	vector<string> split(const string &s, char delim);
 
@@ -59,14 +59,18 @@ public:
 	void history(string id);
 
 	// Return true if successfully borrow from the movie store
-	bool borrowItem(const Customer customer, const Item item);
+	bool borrowItem(Customer *customer, Item *item);
 
 	// Return true if successfully return to the movie store
-	bool returnItem(const Customer customer, const Item item);
+	bool returnItem(Customer *customer, Item *item);
 
 	int Hash(string key);
 
 	void addCustomer(Customer *c);
+
+	Customer* accessCustomer(Customer *c);
+
+
 };
 
 #endif
