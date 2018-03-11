@@ -10,7 +10,6 @@
 #include <map>
 #include <vector>
 #include <array>
-#include <list>
 #include "drama.h"
 #include "customer.h"
 #include "comedy.h"
@@ -29,7 +28,8 @@ private:
 	vector<string> split(const string &s, char delim);
 
 public:
-	//Constructor for Movie Store, calls the readMovies and readCustomers methods // so that a complete Movie store is created.
+	//Constructor for Movie Store, calls the readMovies and readCustomers methods
+	// so that a complete Movie store is created.
 	explicit MovieStore();
 
 	~MovieStore();

@@ -95,10 +95,10 @@ void MovieStore::readCommands(string fileName) {
             }
             else if(command == "B"){
                 myfile>>id>>dvd>>movieType;
-                borrowItem(id, );
+                //borrowItem(id, );
             }
             else if(command == "R"){
-                returnItem(id, );
+                //returnItem(id, );
             }
             else{
                 cout<<"Bad input!";
