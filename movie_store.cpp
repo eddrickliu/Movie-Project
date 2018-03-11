@@ -189,3 +189,25 @@ Customer* MovieStore::accessCustomer(string ID){
 	}
 	return nullptr;
 }
+
+Classic* MovieStore::searchClassic(string director, int year){
+	for (auto &classic : classics) {
+		if( title == classic->getDirector() && year == classic->getYear() ){
+			return classic;
+		}
+	}
+}
+Comedy* MovieStore::searchComedy(string director, int year){
+	for (auto &comedy : comedies) {
+		if( title == comedy->getDirector() && year == comedy->getYear() ){
+			return comedy;
+		}
+	}
+}
+Drama* MovieStore::searchDrama(string director, int year){
+	for (auto &drama : dramas) {
+		if( title == drama->getDirector() && year == drama->getYear() ){
+			return drama;
+		}
+	}
+}

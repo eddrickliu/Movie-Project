@@ -70,6 +70,10 @@ public:
 
 	Customer* accessCustomer(string ID);
 
+	Classic* searchClassic(string title, int year);
+	Comedy* searchComedy(string title, int year);
+	Drama* searchDrama(string title, int year);
+
 
 };
 
