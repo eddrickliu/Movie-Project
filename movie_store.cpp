@@ -142,16 +142,16 @@ void MovieStore::history(string id) {
 }
 
 // Return true if successfully borrow from the movie store
-bool MovieStore::borrowItem(Customer *customer, Item *item) {
-	if(accessCustomer(customer)->borrowItem(item)){
+bool MovieStore::borrowItem(string ID, Item *item) {
+	if(accessCustomer(ID)->borrowItem(item)){
 		return true;
 	}
 	return false;
 }
 
 // Return true if successfully return to the movie store
-bool MovieStore::returnItem(Customer *customer, Item *item) {
-	if(accessCustomer(customer)->returnItem(item)){
+bool MovieStore::returnItem(string ID, Item *item) {
+	if(accessCustomer(ID)->returnItem(item)){
 		return true;
 	}
 	return false;
@@ -174,8 +174,8 @@ void MovieStore::addCustomer(Customer *c){
 	customers[index].push_back(c);
 }
 
-Customer* MovieStore::accessCustomer(Customer *c){
-	int index = Hash(c->getID());
+Customer* MovieStore::accessCustomer(string ID){
+	int index = Hash(ID);
 //	for (int i = 0; i < customers[index].size(); i++){
 //		if (customers[index]
 //	}
@@ -183,7 +183,7 @@ Customer* MovieStore::accessCustomer(Customer *c){
 //		if(it->getId== c->getID())
 //	}
 	for(auto const& value: customers[index]){
-		if(value->getID()==c->getID()){
+		if(value->getID()==ID){
 			return value;
 		}
 	}

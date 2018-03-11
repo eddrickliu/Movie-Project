@@ -59,16 +59,16 @@ public:
 	void history(string id);
 
 	// Return true if successfully borrow from the movie store
-	bool borrowItem(Customer *customer, Item *item);
+	bool borrowItem(string ID, Item *item);
 
 	// Return true if successfully return to the movie store
-	bool returnItem(Customer *customer, Item *item);
+	bool returnItem(string ID, Item *item);
 
 	int Hash(string key);
 
 	void addCustomer(Customer *c);
 
-	Customer* accessCustomer(Customer *c);
+	Customer* accessCustomer(string ID);
 
 
 };
