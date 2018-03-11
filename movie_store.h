@@ -19,14 +19,14 @@ using namespace std;
 
 class MovieStore {
 private:
-	//Three different vectors for the three different types of movies
-	vector<Comedy *> comedies;
-	vector<Drama *> dramas;
-	vector<Classic *> classics;
-	array<vector<Customer*>,10> customers;
-
-	vector<string> split(const string &s, char delim);
-
+    //Three different vectors for the three different types of movies
+    vector<Comedy *> comedies;
+    vector<Drama *> dramas;
+    vector<Classic *> classics;
+    array<vector<Customer*>,10> customers;
+    
+    vector<string> split(const string &s, char delim);
+    
 public:
 	//Constructor for Movie Store, calls the readMovies and readCustomers methods
 	// so that a complete Movie store is created.
@@ -73,8 +73,6 @@ public:
 	Classic* searchClassic(string title, int year);
 	Comedy* searchComedy(string title, int year);
 	Drama* searchDrama(string title, int year);
-
-
 };
 
 #endif
