@@ -7,6 +7,7 @@
 //
 
 #include <string>
+using namespace std;
 
 #ifndef Item_h
 #define Item_h
@@ -15,8 +16,9 @@ class Item {
 private:
 	int stock; // >0
 	std::string title; // Null check
+
 public:
-	explicit Item(int, std::string name);
+	explicit Item(int, string name);
 
 	~Item();
 

@@ -7,8 +7,8 @@
 #define ASSIGNMENT4_CUSTOMER_H
 
 #include <vector>
-#import "movie.h";
-#import "item.h";
+#import "movie.h"
+#import "item.h"
 
 using namespace std;
 
@@ -16,7 +16,7 @@ class Customer {
 private:
 	// Current movies checked out by the customer
 	vector<Item *> currentItems;
-	int id; // 4 digits
+	string id; // 4 digits
 	string lastName; // Null check
 	string firstName; // Null check
 	vector<Item *> history;
@@ -31,9 +31,17 @@ public:
 
 	// Add movie to the map
 	// Also Add movie the history
-	bool borrowItem(Item &item) const;
+	bool borrowItem(Item *item) const;
 
-	bool returnItem(Item &item) const;
+	bool returnItem(Item *item) const;
+
+	bool setfirst(string first);
+	bool setLast(string last);
+	bool setId(int ID);
+	string getFirst() const;
+	string getLast() const;
+	int getID() const;
+
 };
 
 #endif

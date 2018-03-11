@@ -9,10 +9,12 @@
 
 #include <map>
 #include <vector>
+#include <array>
+#include <list>
 #include "drama.h"
 #include "customer.h"
-#include "comedy.h";
-#include "classic.h";
+#include "comedy.h"
+#include "classic.h"
 
 using namespace std;
 
@@ -21,8 +23,8 @@ private:
 	//Three different vectors for the three different types of movies
 	vector<Comedy *> comedies;
 	vector<Drama *> dramas;
-	vector<classic *> classics;
-	vector<int, Customer *> customers;
+	vector<Classic *> classics;
+	array<list<Customer*>,10> customers;
 
 	vector<string> split(const string &s, char delim);
 
@@ -61,6 +63,8 @@ public:
 
 	// Return true if successfully return to the movie store
 	bool returnItem(const Customer customer, const Item item);
+
+	int hashFunction(Customer c)
 };
 
 #endif

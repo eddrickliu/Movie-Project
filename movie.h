@@ -15,6 +15,7 @@ class Movie : public Item {
 private:
 	std::string director; // Null check
 	int year;
+
 public:
 	explicit Movie(int year, std::string director, std::string title,
 	               int stock);
