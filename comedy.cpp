@@ -1,26 +1,10 @@
-// Implementation of comedy.h
+/**
+ * Implementation of comedy.h
+ */
 
 #include "comedy.h"
 
-using namespace std;
-
-Comedy::Comedy(string director, int stock, string title, int year) :
+Comedy::Comedy(int stock, string director, string title, int year) :
 		Movie(year, director, title, stock) {
-
-}
-
-~Comedy::Comedy() {
-
-}
-
-ostream &operator<<(ostream &os, const Item &i){
-
-}
-
-istream &operator>>(istream &is, Item &i) {
-
-}
-
-bool operator==(const Comedy &i) const {
-
+	// No need to do anything here
 }

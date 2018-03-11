@@ -1,15 +1,14 @@
-//
-//  classic.h
-//  Ass4
-//
-//  Created by Eddrick Liu on 3/7/18.
-//  Copyright © 2018 Eddrick Liu. All rights reserved.
-//
+/**
+ * This Classic class
+ */
+
 #include <string>
 #include "movie.h"
 
-#ifndef classic_h
-#define classic_h
+#ifndef Classic_h
+#define Classic_h
+
+using namespace std;
 
 class Classic : public Movie {
 private:
@@ -17,25 +16,22 @@ private:
 	string actor;
 
 public:
-	explicit Classic(int stock, std::string director, std::string title,
-	                 std::string actor, int month, int year);
+	explicit Classic(int stock, string director, string title, string actor,
+	                 int month, int year);
 
-	~classic();
+	string getActor() const;
 
-	bool setActor(std::string);
-
-	string getActor();
+	int getMonth() const;
 
 	bool setMonth(int);
 
-	int getMonth();
+	bool setActor(string);
 
-	friend std::ostream &operator<<(std::ostream &os, const Item &i);
+	friend ostream &operator<<(ostream &os, const Classic &c);
 
-	friend std::istream &operator>>(std::istream &is, Item &i);
+	friend istream &operator>>(istream &is, const Classic &c);
 
-	bool operator==(const Item &i) const;
-}
+	bool operator==(const Classic &i) const;
+};
 
-
-#endif /* classic_h */
+#endif /* Classic_h */

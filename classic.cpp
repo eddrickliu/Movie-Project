@@ -1,6 +1,9 @@
-// Implementation of classic.h
+/**
+ * Implementation of classic.h
+ */
 
 #include "classic.h"
+#include <iostream>
 
 Classic::Classic(int stock, std::string director, std::string title,
                  std::string actor, int month, int year) :
@@ -9,11 +12,7 @@ Classic::Classic(int stock, std::string director, std::string title,
 	setMonth(month);
 }
 
-~Classic() {
-
-}
-
-bool setActor(std::string actor) {
+bool Classic::setActor(std::string actor) {
 	if (actor == "") {
 		cout << "Cant Set Actor" << std::endl;
 		return false;
@@ -22,11 +21,11 @@ bool setActor(std::string actor) {
 	return true;
 }
 
-string getActor() {
+string Classic::getActor() const {
 	return actor;
 }
 
-bool setMonth(int month) {
+bool Classic::setMonth(int month) {
 	if (month > 12 || month < 1) {
 		cout << "Cant Set Month" << endl;
 		return false;
@@ -35,20 +34,28 @@ bool setMonth(int month) {
 	return true;
 }
 
-int getMonth() {
+int Classic::getMonth() const {
 	return month;
 }
 
-ostream &operator<<(ostream &os, const Classic &i) {
-	os << i.getYear() << i.getDirector() << i.getTitle() << i.getStock();
+ostream &operator<<(ostream &os, const Classic &c) {
+	os << c.getYear() << c.getMonth() << c.getDirector() << c.getActor()
+	   << c.getTitle() << c.getStock();
+	return os;
 }
 
-istream &operator>>(istream &is, Item &i) {
-	is >> i.year >> i.director >> i.title >> i.stock;
+istream &operator>>(istream &is, const Classic &c) {
+//	is >> i.getYear() >> i.getDirector() >> i.getTitle() >> i.getStock();
 	return is;
 }
 
-bool operator==(const Item &i) const {
-
-	return Movie::operator==(i);
+bool operator==(const Classic &i) const {
+	return (
+			this->getStock() == i.getStock()
+			&& this->getTitle() == i.getTitle()
+			&& this->getDirector() == i.getDirector()
+			&& this->getYear() == i.getYear()
+			&& this->getMonth() == i.getMonth()
+			&& this->getActor() == i.getActor()
+	);
 }
