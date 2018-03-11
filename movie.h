@@ -16,8 +16,8 @@ private:
 	int year;
 
 public:
-	explicit Movie(int year, string director, string title,
-	               int stock);
+	explicit Movie(int stock, string director, string title,
+	               int year);
 
 	bool setDirector(string);
 

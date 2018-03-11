@@ -296,17 +296,39 @@ void MovieStore::addCustomer(Customer *c){
 }
 
 Customer* MovieStore::accessCustomer(string ID){
-    int index = Hash(ID);
-    //	for (int i = 0; i < customers[index].size(); i++){
-    //		if (customers[index]
-    //	}
-    //	for(vector<Customer*>::iterator it = customers[index].begin(); it != end; ++it){
-    //		if(it->getId== c->getID())
-    //	}
-    for(auto const& value: customers[index]){
-        if(value->getID()==ID){
-            return value;
-        }
-    }
-    return nullptr;
+	int index = Hash(ID);
+//	for (int i = 0; i < customers[index].size(); i++){
+//		if (customers[index]
+//	}
+//	for(vector<Customer*>::iterator it = customers[index].begin(); it != end; ++it){
+//		if(it->getId== c->getID())
+//	}
+	for(auto const& value: customers[index]){
+		if(value->getID()==ID){
+			return value;
+		}
+	}
+	return nullptr;
+}
+
+Classic* MovieStore::searchClassic(string director, int year){
+	for (auto &classic : classics) {
+		if( title == classic->getDirector() && year == classic->getYear() ){
+			return classic;
+		}
+	}
+}
+Comedy* MovieStore::searchComedy(string director, int year){
+	for (auto &comedy : comedies) {
+		if( title == comedy->getDirector() && year == comedy->getYear() ){
+			return comedy;
+		}
+	}
+}
+Drama* MovieStore::searchDrama(string director, int year){
+	for (auto &drama : dramas) {
+		if( title == drama->getDirector() && year == drama->getYear() ){
+			return drama;
+		}
+	}
 }

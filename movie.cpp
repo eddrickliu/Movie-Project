@@ -5,7 +5,7 @@
 #include "movie.h"
 #include <iostream>
 
-Movie::Movie(int year, string director, string title, int stock) : Item(stock,
+Movie::Movie(int stock, string director, string title, int year) : Item(stock,
                                                                         title) {
 	setYear(year);
 	setDirector(director);
@@ -38,7 +38,8 @@ string Movie::getDirector() const {
 }
 
 ostream &operator<<(ostream &os, const Movie &m) {
-	os << m.getYear() << m.getDirector() << m.getTitle() << m.getStock();
+	os << m.getYear() << " " << m.getDirector() <<
+	   " " << m.getTitle() << " " << m.getStock();
 	return os;
 }
 
