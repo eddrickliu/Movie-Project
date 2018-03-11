@@ -45,3 +45,7 @@ istream &operator>>(istream &is, Item &i) {
 //	is >> i.title >> i.stock;
 	return is;
 }
+
+bool Item::operator==(const Item &i) const{
+	return (this->stock == i.stock) && (this->title ==i.title);
+}

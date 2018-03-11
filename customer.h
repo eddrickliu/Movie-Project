@@ -4,12 +4,12 @@
  */
 
 
-#ifndef ASSIGNMENT4_CUSTOMER_H
-#define ASSIGNMENT4_CUSTOMER_H
+#ifndef _CUSTOMER_H
+#define _CUSTOMER_H
 
 #include <vector>
-#import "movie.h"
-#import "item.h"
+#include "movie.h"
+#include "item.h"
 
 using namespace std;
 
@@ -36,7 +36,7 @@ public:
     
     bool returnItem(Item *item);
     
-    bool setfirst(string first);
+    bool setFirst(string first);
     bool setLast(string last);
     bool setId(string nId);
     string getFirstName() const;

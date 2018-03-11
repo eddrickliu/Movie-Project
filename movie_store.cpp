@@ -135,16 +135,39 @@ void MovieStore::inventory() const {
 void MovieStore::history(string id) {
 	// TODO FIXME
 	for (auto &customer : customers) {
-		customer.iterateHistory();
+		customers.iterateHistory();
 	}
 }
 
 // Return true if successfully borrow from the movie store
-bool MovieStore::borrowItem(const Customer customer, const Item item) {
-	customer.borrowItem(item);
+bool MovieStore::borrowItem(Customer customer, const Item *item) {
+	if(customer.borrowItem(item)){
+		return true;
+	}
+	return false;
 }
 
 // Return true if successfully return to the movie store
-bool MovieStore::returnItem(const Customer customer, const Item item) {
-	customer.returnItem(item);
+bool MovieStore::returnItem(Customer customer, const Item *item) {
+	if(customer.returnItem(item)){
+		return true;
+	}
+	return false;
+}
+
+int MovieStore::Hash(string key){
+	int hash = 0;
+	int index;
+
+	for(int i = 0; i < key.size(); i++){
+		hash += (int)key[i];
+	}
+
+	index = hash % 10;
+	return index;
+}
+
+void MovieStore::addCustomer(Customer *c){
+	int index = Hash(c->getID());
+	customers[index].push_back(c,customers[index].begin());
 }

@@ -3,12 +3,14 @@
  * main functions where it reads a text file and populates the Movies HashTable
  */
 
-#ifndef ASSIGNMENT4_MOVIE_STORE_H
-#define ASSIGNMENT4_MOVIE_STORE_H
+#ifndef MOVIE_STORE_H
+#define MOVIE_STORE_H
 
 
 #include <map>
 #include <vector>
+#include <array>
+#include <list>
 #include "drama.h"
 #include "customer.h"
 #include "comedy.h"
@@ -22,7 +24,7 @@ private:
 	vector<Comedy *> comedies;
 	vector<Drama *> dramas;
 	vector<Classic *> classics;
-	vector<string, Customer *> customers;
+	array<list<Customer*>,10> customers;
 
 	vector<string> split(const string &s, char delim);
 
@@ -61,6 +63,10 @@ public:
 
 	// Return true if successfully return to the movie store
 	bool returnItem(const Customer customer, const Item item);
+
+	int Hash(string key);
+
+	void addCustomer(Customer *c);
 };
 
 #endif

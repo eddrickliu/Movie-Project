@@ -5,9 +5,9 @@
 #include <iostream>
 
 Customer::Customer(string nId, string nLastName, string nFirstName) {
-    id = nId;
-    lastName = nLastName;
-    firstName = nFirstName;
+    setId(nId);
+    setFirst(nFirstName);
+    setLast(nLastName);
 }
 
 Customer::~Customer() {
@@ -38,7 +38,7 @@ bool Customer::returnItem(Item *item){
     }
 }
 
-bool Customer::setfirst(string first){
+bool Customer::setFirst(string first){
     if (first == ""){
         cout << "Cannot set first" << endl;
         return false;
