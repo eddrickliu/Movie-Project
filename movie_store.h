@@ -10,7 +10,6 @@
 #include <map>
 #include <vector>
 #include <array>
-#include <list>
 #include "drama.h"
 #include "customer.h"
 #include "comedy.h"
@@ -29,7 +28,8 @@ private:
 	vector<string> split(const string &s, char delim);
 
 public:
-	//Constructor for Movie Store, calls the readMovies and readCustomers methods // so that a complete Movie store is created.
+	//Constructor for Movie Store, calls the readMovies and readCustomers methods
+	// so that a complete Movie store is created.
 	explicit MovieStore();
 
 	~MovieStore();
@@ -59,16 +59,20 @@ public:
 	void history(string id);
 
 	// Return true if successfully borrow from the movie store
-	bool borrowItem(Customer *customer, Item *item);
+	bool borrowItem(string ID, Item *item);
 
 	// Return true if successfully return to the movie store
-	bool returnItem(Customer *customer, Item *item);
+	bool returnItem(string ID, Item *item);
 
 	int Hash(string key);
 
 	void addCustomer(Customer *c);
 
-	Customer* accessCustomer(Customer *c);
+	Customer* accessCustomer(string ID);
+
+	Classic* searchClassic(string title, int year);
+	Comedy* searchComedy(string title, int year);
+	Drama* searchDrama(string title, int year);
 
 
 };
