@@ -3,7 +3,6 @@
 
 #include "customer.h"
 #include <iostream>
-using namespace std;
 
 Customer::Customer(string nId, string nLastName, string nFirstName) {
     id = nId;

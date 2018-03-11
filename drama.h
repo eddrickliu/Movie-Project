@@ -7,18 +7,15 @@
 //
 #include <string>
 #include "movie.h"
-using namespace std;
 
 #ifndef Drama_h
 #define Drama_h
 
+using namespace std;
+
 class Drama : public Movie {
 public:
-    explicit Drama(int stock ,std::string director,std::string title ,int year);
-    ~Drama();
-    friend std::ostream& operator<<(std::ostream& os, const Item& i);
-    friend std::istream& operator>>(std::istream& is, Item& i);
-    bool operator==(const Item &i) const;
+	explicit Drama(int stock, string director, string title, int year);
 };
 
 #endif /* Drama_h */

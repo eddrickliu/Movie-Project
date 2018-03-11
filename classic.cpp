@@ -1,54 +1,61 @@
-// Implementation of classic.h
+/**
+ * Implementation of classic.h
+ */
 
 #include "classic.h"
+#include <iostream>
 
 Classic::Classic(int stock, std::string director, std::string title,
                  std::string actor, int month, int year) :
-Movie(year, director, title, stock ){
-    setActor(actor);
-    setMonth(month);
+		Movie(year, director, title, stock) {
+	setActor(actor);
+	setMonth(month);
 }
 
-Classic::~Classic() {
-
+bool Classic::setActor(std::string actor) {
+	if (actor == "") {
+		cout << "Cant Set Actor" << std::endl;
+		return false;
+	}
+	this->actor = actor;
+	return true;
 }
 
-bool setActor(std::string actor) {
-    if ( actor  == ""){
-        cout << "Cant Set Actor" << endl;
-        return false;
-    }
-    this->actor  = actor;
-    return true;
+string Classic::getActor() const {
+	return actor;
 }
 
-string getActor() {
-    return actor;
+bool Classic::setMonth(int month) {
+	if (month > 12 || month < 1) {
+		cout << "Cant Set Month" << endl;
+		return false;
+	}
+
+	return true;
 }
 
-bool setMonth(int month) {
-    if ( month > 12 || month < 1){
-        std::cout << "Cant Set Month" << std::endl;
-        return false;
-    }
-    this->month  = month;
-    return true;
+int Classic::getMonth() const {
+	return month;
 }
 
-int getMonth() {
-    return month;
+ostream &operator<<(ostream &os, const Classic &c) {
+	os << c.getYear() << c.getMonth() << c.getDirector() << c.getActor()
+	   << c.getTitle() << c.getStock();
+	return os;
 }
 
-ostream &operator<<(ostream &os, const Item &i) {
-    os << i.year << i.director << i.title << i.stock << i.actor << i.swagger;
-    return os
+istream &operator>>(istream &is, const Classic &c) {
+//	is >> i.getYear() >> i.getDirector() >> i.getTitle() >> i.getStock();
+	return is;
 }
 
-istream &operator>>(istream &is, Item &i) {
-    is >> i.year >> i.director >> i.title >> i.stock;
-    return is;
-}
-
-bool Classic::operator==(const Item &i) const {
-    return Movie::operator==(i);
+bool operator==(const Classic &i) const {
+	return (
+			this->getStock() == i.getStock()
+			&& this->getTitle() == i.getTitle()
+			&& this->getDirector() == i.getDirector()
+			&& this->getYear() == i.getYear()
+			&& this->getMonth() == i.getMonth()
+			&& this->getActor() == i.getActor()
+	);
 }
