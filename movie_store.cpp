@@ -14,9 +14,9 @@ MovieStore::~MovieStore() {
 	comedies.clear();
 	classics.clear();
 
-	delete dramas;
-	delete comedies;
-	delete classics;
+	//delete dramas;
+	//delete comedies;
+	//delete classics;
 }
 
 vector<string> MovieStore::split(const string &s, char delim) {
@@ -39,20 +39,20 @@ void MovieStore::readMovies(string fileName) {
 		vector<string> movieInfo = split(line, ',');
 		int stock = stoi(movieInfo[1]);
 
-		if (movieInfo[0] == 'F') {
+		if (movieInfo[0] == "F") {
 			int year = stoi(line.substr(line.length() - 4));
-			comedy *f = new comedy(movieInfo[2], movieInfo[3], stock, year);
+			Comedy *f = new Comedy(stock,movieInfo[2], movieInfo[3], year);
 			comedies.push_back(f);
-		} else if (movieInfo[0] == 'D') {
+		} else if (movieInfo[0] == "D") {
 			int year = stoi(line.substr(line.length() - 4));
-			drama *d = new drama(movieInfo[2], movieInfo[3], stock, year);
+			Drama *d = new Drama(stock,movieInfo[2], movieInfo[3], year);
 			dramas.push_back(d);
-		} else if (movieInfo[0] == 'C') {
+		} else if (movieInfo[0] == "C") {
 			vector<string> classicInfo = split(movieInfo[4], ' ');
 			int month = stoi(classicInfo[1]);
 			int year = stoi(classicInfo[2]);
-			classic *c = new classic(movieInfo[2], movieInfo[3], stock,
-			                         classicInfo[0], year, month);
+			Classic *c = new Classic(stock,movieInfo[2], movieInfo[3],
+			                         classicInfo[0], month, year);
 			classics.push_back(c);
 		}
 	}
@@ -65,17 +65,17 @@ void MovieStore::readCustomers(string fileName) {
 	while (infile >> line) {
 
 		vector<string> customerInfo = split(line, ' ');
-		int id = stoi(customerInfo[0]);
-		Customer *c = new Customer(id, customerInfo[1], customerInfo[2]);
+		//int id = stoi(customerInfo[0]);
+		Customer *c = new Customer(customerInfo[0], customerInfo[1], customerInfo[2]);
 		// TODO add customers to hash table
-		customers.push_back(id, c);
+		customers.push_back(customerInfo[0], c);
 	}
 }
 
 //Method that takes in a string that is the file name containing all commands
 void MovieStore::readCommands(string fileName) {
     string line,command,dvd,movieType;
-    int id;
+    string id;
     
         ifstream myfile(fileName);
         if (!myfile)  // Check if can open the file
@@ -91,14 +91,14 @@ void MovieStore::readCommands(string fileName) {
             }
             else if(command == "H"){
                 myfile>>id;
-                hitory(id);
+                history(id);
             }
             else if(command == "B"){
                 myfile>>id>>dvd>>movieType;
-                borrowItem(id, )
+                borrowItem(id, );
             }
             else if(command == "R"){
-                returnItem(id, )
+                returnItem(id, );
             }
             else{
                 cout<<"Bad input!";
@@ -132,7 +132,7 @@ void MovieStore::inventory() const {
 }
 
 // List the viewing history of the customer
-void MovieStore::history(int id) {
+void MovieStore::history(string id) {
 	// TODO FIXME
 	for (auto &customer : customers) {
 		customer.iterateHistory();
