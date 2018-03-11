@@ -1,40 +1,37 @@
-//
-//  movie.h
-//  Ass4
-//
-//  Created by Eddrick Liu on 3/7/18.
-//  Copyright © 2018 Eddrick Liu. All rights reserved.
-//
+/**
+ *  This movie class...
+ */
+
 #include "item.h"
 #include <string>
 
 #ifndef movie_h
 #define movie_h
 
+using namespace std;
+
 class Movie : public Item {
 private:
-	std::string director; // Null check
+	string director;
 	int year;
 
 public:
-	explicit Movie(int year, std::string director, std::string title,
+	explicit Movie(int year, string director, string title,
 	               int stock);
 
-	virtual ~Movie();
-
-	bool setDirector(std::string);
+	bool setDirector(string);
 
 	bool setYear(int year);
 
-	int getYear();
+	int getYear() const;
 
-	std::string getDirector();
+	string getDirector() const;
 
-	friend std::ostream &operator<<(std::ostream &os, const Item &i);
+	friend ostream &operator<<(ostream &os, const Movie &m);
 
-	friend std::istream &operator>>(std::istream &is, Item &i);
+	friend istream &operator>>(istream &is, const Movie &m);
 
-	bool operator==(const Item &i) const;
+	bool operator==(const Movie &i) const;
 };
 
-#endif /* movie_h */
+#endif
