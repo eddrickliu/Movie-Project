@@ -47,11 +47,9 @@ istream &operator>>(istream &is, const Movie &m) {
 	return is;
 }
 
-bool Movie::operator==(const Movie &i) const {
-	return (
-			this->getStock() == i.getStock()
-			&& this->getTitle() == i.getTitle()
-			&& this->getDirector() == i.getDirector()
-			&& this->getYear() == i.getYear()
-	);
+bool Movie::operator==(const Movie &m) const{
+	if (Item::operator==(m) == false) {
+		return false;
+	}
+	return ( this->director == m.director) &&  ( this->year == m.year);
 }

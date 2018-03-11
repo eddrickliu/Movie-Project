@@ -12,26 +12,26 @@ using namespace std;
 
 class Classic : public Movie {
 private:
-	int month;
-	string actor;
+    int month;
+    string actor;
 
 public:
-	explicit Classic(int stock, string director, string title, string actor,
-	                 int month, int year);
+    explicit Classic(int stock, string director, string title, string actor,
+                     int month, int year);
 
-	string getActor() const;
+    string getActor() const;
 
-	int getMonth() const;
+    int getMonth() const;
 
-	bool setMonth(int);
+    bool setMonth(int);
 
-	bool setActor(string);
+    bool setActor(string);
 
-	friend ostream &operator<<(ostream &os, const Classic &c);
+    friend ostream &operator<<(ostream &os, const Classic &c);
 
-	friend istream &operator>>(istream &is, const Classic &c);
+    friend istream &operator>>(istream &is, const Classic &c);
 
-	bool operator==(const Classic &i) const;
+    bool operator==(const Classic &i) const;
 };
 
 #endif /* Classic_h */

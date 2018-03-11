@@ -68,7 +68,7 @@ void MovieStore::readCustomers(string fileName) {
 		//int id = stoi(customerInfo[0]);
 		Customer *c = new Customer(customerInfo[0], customerInfo[1], customerInfo[2]);
 		// TODO add customers to hash table
-		customers.push_back(customerInfo[0], c);
+		addCustomer(c);
 	}
 }
 
@@ -134,17 +134,58 @@ void MovieStore::inventory() const {
 // List the viewing history of the customer
 void MovieStore::history(string id) {
 	// TODO FIXME
-	for (auto &customer : customers) {
-		customer.iterateHistory();
+	for ( int i = 0; i < customers.size();i++) {
+		for (auto &customer : customers[i]) {
+			customer->iterateHistory();
+		}
 	}
 }
 
 // Return true if successfully borrow from the movie store
-bool MovieStore::borrowItem(const Customer customer, const Item item) {
-	customer.borrowItem(item);
+bool MovieStore::borrowItem(Customer *customer, Item *item) {
+	if(accessCustomer(customer)->borrowItem(item)){
+		return true;
+	}
+	return false;
 }
 
 // Return true if successfully return to the movie store
-bool MovieStore::returnItem(const Customer customer, const Item item) {
-	customer.returnItem(item);
+bool MovieStore::returnItem(Customer *customer, Item *item) {
+	if(accessCustomer(customer)->returnItem(item)){
+		return true;
+	}
+	return false;
+}
+
+int MovieStore::Hash(string key){
+	int hash = 0;
+	int index;
+
+	for(int i = 0; i < key.size(); i++){
+		hash += (int)key[i];
+	}
+
+	index = hash % 10;
+	return index;
+}
+
+void MovieStore::addCustomer(Customer *c){
+	int index = Hash(c->getID());
+	customers[index].push_back(c);
+}
+
+Customer* MovieStore::accessCustomer(Customer *c){
+	int index = Hash(c->getID());
+//	for (int i = 0; i < customers[index].size(); i++){
+//		if (customers[index]
+//	}
+//	for(vector<Customer*>::iterator it = customers[index].begin(); it != end; ++it){
+//		if(it->getId== c->getID())
+//	}
+	for(auto const& value: customers[index]){
+		if(value->getID()==c->getID()){
+			return value;
+		}
+	}
+	return nullptr;
 }

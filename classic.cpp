@@ -49,13 +49,9 @@ istream &operator>>(istream &is, const Classic &c) {
 	return is;
 }
 
-bool operator==(const Classic &i) const {
-	return (
-			this->getStock() == i.getStock()
-			&& this->getTitle() == i.getTitle()
-			&& this->getDirector() == i.getDirector()
-			&& this->getYear() == i.getYear()
-			&& this->getMonth() == i.getMonth()
-			&& this->getActor() == i.getActor()
-	);
+bool Classic::operator==(const Classic &c) const {
+	if (Movie::operator==(c) == false) {
+		return false;
+	}
+	return ( this->month == c.month) &&  ( this->actor == c.actor);
 }
