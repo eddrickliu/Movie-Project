@@ -22,7 +22,7 @@ private:
 	vector<Comedy *> comedies;
 	vector<Drama *> dramas;
 	vector<Classic *> classics;
-	vector<int, Customer *> customers;
+	vector<string, Customer *> customers;
 
 	vector<string> split(const string &s, char delim);
 
@@ -54,7 +54,7 @@ public:
 	void inventory() const;
 
 	// List the viewing history of the customer
-	void history(int id);
+	void history(string id);
 
 	// Return true if successfully borrow from the movie store
 	bool borrowItem(const Customer customer, const Item item);
