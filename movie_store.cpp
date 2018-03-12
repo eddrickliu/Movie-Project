@@ -98,49 +98,59 @@ void MovieStore::readCommands(string fileName) {
             else if(line.substr(0,1) == "H"){ // H & customer ID
                 // Take in customer ID & List transcation history
                 // Check if the customer exist first
-                if(!history(line.substr(2,5))){
+                if(!history(line.substr(2,4))){
                     cout<<"Customer not found"<<endl;
                 }
             }
-            else if(line.substr(0,1) == "B"){
-                if(line.substr(7,8) == "D"){
-                if(line.substr(9,10) == "F"){
-                        vector<string> movieInfo = split(line.substr(11,line.size()), ',');
-                if(!borrowItem(line.substr(2,5), searchComedy(movieInfo[0], stoi(movieInfo[1])))){
-                    cout<<"Band input!"<<endl;
-                }
-                }
-                    if(line.substr(9,10) == "D"){
-                        vector<string> movieInfo = split(line.substr(11,line.size()), ',');
-                        if(!borrowItem(line.substr(2,5), searchDrama(movieInfo[0], stoi(movieInfo[1])))){
-                            cout<<"Band input!"<<endl;
-                        }
-                    }
-                    if(line.substr(9,10) == "C"){
-                        vector<string> movieInfo = split(line.substr(11,line.size()), ',');
-                        if(!borrowItem(line.substr(2,5), searchClassic(movieInfo[0], stoi(movieInfo[1])))){
+            else if((line.substr(0,1) == "B" || line.substr(0,1) == "R") && line.substr(7,1) == "D"){
+                if(line.substr(9,1) == "F"){
+                    vector<string> movieInfo = split(line.substr(11,line.size() - 11), ',');
+                    if(line.substr(0,1) == "B"){
+                    if(!borrowItem(line.substr(2,4), searchComedy(movieInfo[0], stoi(movieInfo[1])))){
+                        cout<<"Band input!"<<endl;
+                    }}else{
+                        if(!returnItem(line.substr(2,4), searchComedy(movieInfo[0], stoi(movieInfo[1])))){
                             cout<<"Band input!"<<endl;
                         }
                     }
                 }
-            } // end of borrow
-            else if(line.substr(0,1) == "R"){
-                if(!returnItem(line.substr(2,5), <#Item *item#>)){
-                cout<<"Band input!"<<endl;
+                if(line.substr(9,1) == "D"){
+                    vector<string> movieInfo = split(line.substr(11,line.size() - 11), ',');
+                    if(line.substr(0,1) == "B"){
+                    if(!borrowItem(line.substr(2,4), searchDrama(movieInfo[0], movieInfo[1]))){
+                        cout<<"Band input!"<<endl;
+                    }}
+                    else{
+                        if(!returnItem(line.substr(2,4), searchDrama(movieInfo[0], movieInfo[1]))){
+                            cout<<"Band input!"<<endl;
+                        }
+                    }
+                }
+                if(line.substr(9,1) == "C"){
+                    vector<string> movieInfo = split(line.substr(11,line.size()), ',');
+                    if(line.substr(0,1) == "B"){
+                    if(!borrowItem(line.substr(2,4), searchClassic(line.substr(18,line.size()-18), stoi(line.substr(11,1)), stoi(line.substr(13,4))))){
+                        cout<<"Band input!"<<endl;
+                    }
+                    }else{
+                        if(!returnItem(line.substr(2,4), searchClassic(line.substr(18,line.size()-18), stoi(line.substr(11,1)), stoi(line.substr(13,4))))){
+                            cout<<"Band input!"<<endl;
+                        }
+                    }
+                }
             }
-    }//end of return
+            else{ // Bad input
+                cout<<"Bad input!"<<endl;
+            }
         myfile.close(); // Close input file stream
     }}
 
 //TODO: Search classic(string title, string director) // check both ways director and title
 
-Classic* MovieStore::searchClassic(string s, int year){
+Classic* MovieStore::searchClassic(string s, int month, int year){
     for (auto &classic : classics) {
-        if( s == classic->getTitle() && year == classic->getYear() ){
-            return classic;
-        }else if( s == classic->getDirector() && year == classic->getYear() ){
-            return classic;
-        }else if( s == classic->getActor() && year == classic->getYear() ){
+        if((s == classic->getActor() || s == classic->getDirector()) &&
+           month == classic->getMonth() && year == classic->getYear()){
             return classic;
         }
     }
@@ -157,11 +167,23 @@ Comedy* MovieStore::searchComedy(string s, int year){
     }
     return nullptr;
 }
+
 Drama* MovieStore::searchDrama(string s, int year){
     for (auto &drama : dramas) {
         if( s == drama->getTitle() && year == drama->getYear() ){
             return drama;
         }else if( s == drama->getDirector() && year == drama->getYear() ){
+            return drama;
+        }
+    }
+    return nullptr;
+}
+
+Drama* MovieStore::searchDrama(string s, string s1){
+    for (auto &drama : dramas) {
+        if( s == drama->getTitle() && s1 == drama->getDirector() ){
+            return drama;
+        }else if( s == drama->getDirector() && s1 == drama->getTitle() ){
             return drama;
         }
     }
@@ -296,39 +318,17 @@ void MovieStore::addCustomer(Customer *c){
 }
 
 Customer* MovieStore::accessCustomer(string ID){
-	int index = Hash(ID);
-//	for (int i = 0; i < customers[index].size(); i++){
-//		if (customers[index]
-//	}
-//	for(vector<Customer*>::iterator it = customers[index].begin(); it != end; ++it){
-//		if(it->getId== c->getID())
-//	}
-	for(auto const& value: customers[index]){
-		if(value->getID()==ID){
-			return value;
-		}
-	}
-	return nullptr;
-}
-
-Classic* MovieStore::searchClassic(string director, int year){
-	for (auto &classic : classics) {
-		if( title == classic->getDirector() && year == classic->getYear() ){
-			return classic;
-		}
-	}
-}
-Comedy* MovieStore::searchComedy(string director, int year){
-	for (auto &comedy : comedies) {
-		if( title == comedy->getDirector() && year == comedy->getYear() ){
-			return comedy;
-		}
-	}
-}
-Drama* MovieStore::searchDrama(string director, int year){
-	for (auto &drama : dramas) {
-		if( title == drama->getDirector() && year == drama->getYear() ){
-			return drama;
-		}
-	}
+    int index = Hash(ID);
+    //	for (int i = 0; i < customers[index].size(); i++){
+    //		if (customers[index]
+    //	}
+    //	for(vector<Customer*>::iterator it = customers[index].begin(); it != end; ++it){
+    //		if(it->getId== c->getID())
+    //	}
+    for(auto const& value: customers[index]){
+        if(value->getID()==ID){
+            return value;
+        }
+    }
+    return nullptr;
 }

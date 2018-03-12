@@ -7,9 +7,8 @@
 
 Classic::Classic(int stock, std::string director, std::string title,
                  std::string actor, int month, int year) :
-		Movie(stock, director, title, year) {
+		Movie(year, director, title, stock) {
 	setActor(actor);
-	//cout << month
 	setMonth(month);
 }
 
@@ -31,7 +30,7 @@ bool Classic::setMonth(int month) {
 		cout << "Cant Set Month" << endl;
 		return false;
 	}
-	this->month = month;
+
 	return true;
 }
 
@@ -40,8 +39,8 @@ int Classic::getMonth() const {
 }
 
 ostream &operator<<(ostream &os, const Classic &c) {
-	os << c.getYear() << " " << c.getMonth() << " " << c.getDirector()
-	   <<" "<< c.getActor() << " "<< c.getTitle() << " " << c.getStock();
+	os << c.getYear() << c.getMonth() << c.getDirector() << c.getActor()
+	   << c.getTitle() << c.getStock();
 	return os;
 }
 
@@ -55,30 +54,4 @@ bool Classic::operator==(const Classic &c) const {
 		return false;
 	}
 	return ( this->month == c.month) &&  ( this->actor == c.actor);
-}
-
-bool Classic::operator>(const Classic &c) const{
-	if (this->getYear() < c.getYear()){
-		return false;
-	}
-	else if (this->getMonth() < c.getMonth()){
-		return false;
-	}
-	else if (this->getActor() < c.getActor()){
-		return false;
-	}
-	return true;
-}
-
-bool Classic::operator<(const Classic &c) const{
-	if (this->getYear() > c.getYear()){
-		return false;
-	}
-	else if (this->getMonth() > c.getMonth()){
-		return false;
-	}
-	else if (this->getActor() > c.getActor()){
-		return false;
-	}
-	return true;
 }
