@@ -17,7 +17,7 @@
 
 int main(int argc, const char * argv[]) {
     MovieStore* m1 = new MovieStore();
-    m1->readMovies(data4movies.txt);
-    m1->readCustomers(data4movies.txt);
-    m1->readCommands(data4movies.txt);
+    m1->readMovies("data4movies.txt");
+    m1->readCustomers("data4movies.txt");
+    m1->readCommands("data4movies.txt");
 }
