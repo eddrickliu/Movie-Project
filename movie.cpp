@@ -44,10 +44,6 @@ ostream &operator<<(ostream &os, const Movie &m) {
 	return os;
 }
 
-istream &operator>>(istream &is, const Movie &m) {
-//	is >> m.getYear() >> m.getDirector() >> m.getTitle() >> m.getStock();
-	return is;
-}
 
 bool Movie::operator==(const Movie &m) const {
 	if (Item::operator==(m) == false) {

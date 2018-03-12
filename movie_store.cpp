@@ -174,32 +174,12 @@ Classic *MovieStore::searchClassic(string s, int month, int year) {
 	return nullptr;
 }
 
-Classic *MovieStore::searchClassic(string s, int month, int year) {
-	for (auto &classic : classics) {
-		if ((s == classic->getActor() || s == classic->getDirector()) &&
-		    month == classic->getMonth() && year == classic->getYear()) {
-			return classic;
-		}
-	}
-	return nullptr;
-}
 
 Comedy *MovieStore::searchComedy(string s, int year) {
 	for (auto &comedy : comedies) {
 		if (s == comedy->getTitle() && year == comedy->getYear()) {
 			return comedy;
 		} else if (s == comedy->getDirector() && year == comedy->getYear()) {
-			return comedy;
-		}
-	}
-	return nullptr;
-}
-
-Comedy *MovieStore::searchComedy(string s, string s1) {
-	for (auto &comedy : comedies) {
-		if (s == comedy->getTitle() && s1 == comedy->getDirector()) {
-			return comedy;
-		} else if (s == comedy->getDirector() && s1 == comedy->getTitle()) {
 			return comedy;
 		}
 	}
@@ -321,7 +301,9 @@ int MovieStore::Hash(string key) {
 	int hash = 0;
 	int index;
 
-	for (int i = 0; i < key.size(); i++) hash += (int) key[i];
+    for (auto const &value: key){
+        hash += (int)value;
+    }
 
 	index = hash % 10;
 	return index;

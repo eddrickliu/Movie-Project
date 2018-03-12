@@ -29,8 +29,6 @@ public:
 
 	friend ostream &operator<<(ostream &os, const Movie &m);
 
-	friend istream &operator>>(istream &is, const Movie &m);
-
 	bool operator==(const Movie &i) const;
 };
 

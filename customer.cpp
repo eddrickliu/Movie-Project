@@ -24,10 +24,9 @@ void Customer::iterateHistory() {
 
 // Return movie from the map
 bool Customer::borrowItem(Item *item) {
-	for (int i = 0; i < currentItems.size(); i++) {
-		if (currentItems[i] ==
-		    item) { // Item exists in the currentItems, Increase the stock by one
-			currentItems[i]->setStock(currentItems[i]->getStock() + 1);
+	for (auto const &it: currentItems){
+		if (it == item) { // Item exists in the currentItems, Increase the stock by one
+			it->setStock(it->getStock() + 1);
 			return true;
 		}
 	}
@@ -45,15 +44,16 @@ bool Customer::returnItem(Item *item) {
 	}else{
 		return false;
 	}*/
-	for (int i = 0; i < currentItems.size(); i++) {
-		if (currentItems[i] == item) { // Item exists in the currentItems
-			if (currentItems[i]->getStock() >
-			    0) { // The customer currently checked out the movie
-				currentItems[i]->setStock(currentItems[i]->getStock() - 1);
+
+	for (auto const &it: currentItems) {
+		if (it == item) { // Item exists in the currentItems
+			if (it->getStock() > 0) { // The customer currently checked out the movie
+				it->setStock(it->getStock() - 1);
 				return true;
 			}
 		}
 	}
+
 	return false; // Can't find movie or the customer has already returned the movie
 }
 

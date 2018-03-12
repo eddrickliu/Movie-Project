@@ -29,8 +29,6 @@ public:
 
 	friend ostream &operator<<(ostream &os, const Classic &c);
 
-	friend istream &operator>>(istream &is, const Classic &c);
-
 	bool operator==(const Classic &i) const;
 
 	bool operator>(const Classic &c) const;

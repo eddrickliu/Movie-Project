@@ -27,8 +27,6 @@ public:
 
 	friend ostream &operator<<(ostream &os, const Item &i);
 
-	friend istream &operator>>(istream &is, Item &i);
-
 	virtual bool operator==(const Item &i) const;
 };
 

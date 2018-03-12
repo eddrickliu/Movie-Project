@@ -41,11 +41,6 @@ ostream &operator<<(ostream &os, const Item &i) {
 	return os;
 }
 
-istream &operator>>(istream &is, Item &i) {
-//	is >> i.title >> i.stock;
-	return is;
-}
-
 bool Item::operator==(const Item &i) const {
 	return (this->title == i.title);
 }
