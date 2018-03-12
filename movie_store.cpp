@@ -10,6 +10,23 @@ MovieStore::MovieStore() {
 }
 
 MovieStore::~MovieStore() {
+    for ( auto & item : dramas){
+        delete item;
+    }
+    for ( auto & item : comedies){
+        delete item;
+    }
+    for ( auto & item : classics){
+        delete item;
+    }
+
+    for ( auto & bucket : customers){
+        for ( auto & item : bucket){
+            delete item;
+        }
+        bucket.clear();
+    }
+
 	dramas.clear();
 	comedies.clear();
 	classics.clear();
@@ -111,13 +128,13 @@ void MovieStore::readCommands(string fileName) {
 					if (!borrowItem(line.substr(2, 4),
 					                searchComedy(movieInfo[0],
 					                             stoi(movieInfo[1])))) {
-						cout << "Band input!" << endl;
+						cout << "Bad input!" << endl;
 					}
 				} else {
 					if (!returnItem(line.substr(2, 4),
 					                searchComedy(movieInfo[0],
 					                             stoi(movieInfo[1])))) {
-						cout << "Band input!" << endl;
+						cout << "Bad input!" << endl;
 					}
 				}
 			}
@@ -127,31 +144,30 @@ void MovieStore::readCommands(string fileName) {
 				if (line.substr(0, 1) == "B") {
 					if (!borrowItem(line.substr(2, 4),
 					                searchDrama(movieInfo[0], movieInfo[1]))) {
-						cout << "Band input!" << endl;
+						cout << "Bad input!" << endl;
 					}
 				} else {
 					if (!returnItem(line.substr(2, 4),
 					                searchDrama(movieInfo[0], movieInfo[1]))) {
-						cout << "Band input!" << endl;
+						cout << "Bad input!" << endl;
 					}
 				}
 			}
 			if (line.substr(9, 1) == "C") {
-				vector<string> movieInfo = split(line.substr(11, line.size()),
-				                                 ',');
+				//vector<string> movieInfo = split(line.substr(11, line.size()),',');
 				if (line.substr(0, 1) == "B") {
 					if (!borrowItem(line.substr(2, 4), searchClassic(
 							line.substr(18, line.size() - 18),
 							stoi(line.substr(11, 1)),
 							stoi(line.substr(13, 4))))) {
-						cout << "Band input!" << endl;
+						cout << "Bad input!" << endl;
 					}
 				} else {
 					if (!returnItem(line.substr(2, 4), searchClassic(
 							line.substr(18, line.size() - 18),
 							stoi(line.substr(11, 1)),
 							stoi(line.substr(13, 4))))) {
-						cout << "Band input!" << endl;
+						cout << "Bad input!" << endl;
 					}
 				}
 			}

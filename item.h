@@ -17,6 +17,8 @@ private:
 public:
 	explicit Item(int, string name);
 
+    virtual ~Item();
+
 	bool setStock(int);
 
 	bool setTitle(string name);

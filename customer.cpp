@@ -11,7 +11,12 @@ Customer::Customer(string nId, string nLastName, string nFirstName) {
 }
 
 Customer::~Customer() {
-
+    for ( auto & item : currentItems){
+        delete item;
+    }
+    for ( auto & item : history){
+        delete item;
+    }
 }
 
 // Iterate through the history vector, and output to the screen

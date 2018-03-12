@@ -10,6 +10,10 @@ Item::Item(int stock, string title) {
 	setTitle(title);
 }
 
+Item::~Item(){
+
+}
+
 bool Item::setStock(int stock) {
 	if (stock < 0) {
 		cout << "Cant Set Stock" << endl;

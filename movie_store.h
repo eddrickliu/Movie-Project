@@ -47,10 +47,6 @@ public:
 
 	Comedy *searchComedy(string s, int year);
 
-	Classic *searchClassic(string s, string s1);
-
-	Comedy *searchComedy(string s, string s1);
-
 	Drama *searchDrama(string s, string s1);
 
 	//sorts all Dramas
