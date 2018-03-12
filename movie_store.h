@@ -19,14 +19,14 @@ using namespace std;
 
 class MovieStore {
 private:
-    //Three different vectors for the three different types of movies
-    vector<Comedy *> comedies;
-    vector<Drama *> dramas;
-    vector<Classic *> classics;
-    array<vector<Customer*>,10> customers;
-    
-    vector<string> split(const string &s, char delim);
-    
+	//Three different vectors for the three different types of movies
+	vector<Comedy *> comedies;
+	vector<Drama *> dramas;
+	vector<Classic *> classics;
+	array<vector<Customer *>, 10> customers;
+
+	vector<string> split(const string &s, char delim);
+
 public:
 	//Constructor for Movie Store, calls the readMovies and readCustomers methods
 	// so that a complete Movie store is created.
@@ -53,10 +53,10 @@ public:
 	void sortClassic();
 
 	// List all the movies
-	void inventory() const;
+	void inventory();
 
 	// List the viewing history of the customer
-	void history(string id);
+	bool history(string id);
 
 	// Return true if successfully borrow from the movie store
 	bool borrowItem(string ID, Item *item);
@@ -68,11 +68,13 @@ public:
 
 	void addCustomer(Customer *c);
 
-	Customer* accessCustomer(string ID);
+	Customer *accessCustomer(string ID);
 
-	Classic* searchClassic(string title, int year);
-	Comedy* searchComedy(string title, int year);
-	Drama* searchDrama(string title, int year);
+	Classic *searchClassic(string title, int year);
+
+	Comedy *searchComedy(string title, int year);
+
+	Drama *searchDrama(string title, int year);
 };
 
 #endif

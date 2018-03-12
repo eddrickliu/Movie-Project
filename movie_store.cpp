@@ -41,24 +41,24 @@ void MovieStore::readMovies(string fileName) {
 
 		if (movieInfo[0] == "F") {
 			int year = stoi(line.substr(line.length() - 4));
-			Comedy *f = new Comedy(stock,movieInfo[2], movieInfo[3], year);
+			Comedy *f = new Comedy(stock, movieInfo[2], movieInfo[3], year);
 			comedies.push_back(f);
 		} else if (movieInfo[0] == "D") {
 			int year = stoi(line.substr(line.length() - 4));
-			Drama *d = new Drama(stock,movieInfo[2], movieInfo[3], year);
+			Drama *d = new Drama(stock, movieInfo[2], movieInfo[3], year);
 			dramas.push_back(d);
 		} else if (movieInfo[0] == "C") {
 			vector<string> classicInfo = split(movieInfo[4], ' ');
 			int month = stoi(classicInfo[1]);
 			int year = stoi(classicInfo[2]);
-			Classic *c = new Classic(stock,movieInfo[2], movieInfo[3],
+			Classic *c = new Classic(stock, movieInfo[2], movieInfo[3],
 			                         classicInfo[0], month, year);
 			classics.push_back(c);
 		}
 	}
-    sortDrama();
-    sortComedy();
-    sortClassic();
+	sortDrama();
+	sortComedy();
+	sortClassic();
 }
 
 //Method that takes in a string that is the file name containing all customers + ID
@@ -69,7 +69,8 @@ void MovieStore::readCustomers(string fileName) {
 
 		vector<string> customerInfo = split(line, ' ');
 		//int id = stoi(customerInfo[0]);
-		Customer *c = new Customer(customerInfo[0], customerInfo[1], customerInfo[2]);
+		Customer *c = new Customer(customerInfo[0], customerInfo[1],
+		                           customerInfo[2]);
 		// TODO add customers to hash table
 		addCustomer(c);
 	}
@@ -77,95 +78,106 @@ void MovieStore::readCustomers(string fileName) {
 
 //Method that takes in a string that is the file name containing all commands
 void MovieStore::readCommands(string fileName) {
-    ifstream myfile(fileName);
-    string line;
-    
-    if (!myfile)  // Check if can open the file
-    {
-        cout << "Can't open the file\n";
-    }
-    
-    while (myfile >> line) {
-        
-        //vector<string> movieInfo = split(line, ' ');
-    //string line,command,dvd,movieType;
-    //string id;
-    //ifstream myfile(fileName);
-            //myfile>>command;
-            if(line.substr(0,1) == "I"){ // No more field after I
-                inventory();
-            }
-            else if(line.substr(0,1) == "H"){ // H & customer ID
-                // Take in customer ID & List transcation history
-                // Check if the customer exist first
-                if(!history(line.substr(2,5))){
-                    cout<<"Customer not found"<<endl;
-                }
-            }
-            else if(line.substr(0,1) == "B"){
-                if(line.substr(7,8) == "D"){
-                if(line.substr(9,10) == "F"){
-                        vector<string> movieInfo = split(line.substr(11,line.size()), ',');
-                if(!borrowItem(line.substr(2,5), searchComedy(movieInfo[0], stoi(movieInfo[1])))){
-                    cout<<"Band input!"<<endl;
-                }
-                }
-                    if(line.substr(9,10) == "D"){
-                        vector<string> movieInfo = split(line.substr(11,line.size()), ',');
-                        if(!borrowItem(line.substr(2,5), searchDrama(movieInfo[0], stoi(movieInfo[1])))){
-                            cout<<"Band input!"<<endl;
-                        }
-                    }
-                    if(line.substr(9,10) == "C"){
-                        vector<string> movieInfo = split(line.substr(11,line.size()), ',');
-                        if(!borrowItem(line.substr(2,5), searchClassic(movieInfo[0], stoi(movieInfo[1])))){
-                            cout<<"Band input!"<<endl;
-                        }
-                    }
-                }
-            } // end of borrow
-            else if(line.substr(0,1) == "R"){
-                if(!returnItem(line.substr(2,5), <#Item *item#>)){
-                cout<<"Band input!"<<endl;
-            }
-    }//end of return
-        myfile.close(); // Close input file stream
-    }}
+	ifstream myfile(fileName);
+	string line;
+
+	// Check if can open the file
+	if (!myfile) {
+		cout << "Can't open the file\n";
+	}
+
+	while (myfile >> line) {
+
+		//vector<string> movieInfo = split(line, ' ');
+		//string line,command,dvd,movieType;
+		//string id;
+		//ifstream myfile(fileName);
+		//myfile>>command;
+		string command = line.substr(0, 1);
+		if (command == "I") { // Inventory
+			inventory();
+		} else if (command == "H") { // H & customer ID
+			// Take in customer ID & List transcation history
+			// Check if the customer exist first
+			if (!history(line.substr(2, 5))) {
+				cout << "Customer not found" << endl;
+			}
+		} else if (command == "B" || command == "R") {
+
+			const customerId = line.substr(2, 5);
+
+			if (line.substr(7, 8) == "D") {
+				if (line.substr(9, 10) == "F") {
+					vector<string> movieInfo = split(
+							line.substr(11, line.size()), ',');
+					if (!borrowItem(line.substr(2, 5),
+					                searchComedy(movieInfo[0],
+					                             stoi(movieInfo[1])))) {
+						cout << "Band input!" << endl;
+					}
+				}
+				if (line.substr(9, 10) == "D") {
+					vector<string> movieInfo = split(
+							line.substr(11, line.size()), ',');
+					if (!borrowItem(line.substr(2, 5), searchDrama(movieInfo[0],
+					                                               stoi(movieInfo[1])))) {
+						cout << "Band input!" << endl;
+					}
+				}
+				if (line.substr(9, 10) == "C") {
+					vector<string> movieInfo = split(
+							line.substr(11, line.size()), ',');
+					if (!borrowItem(line.substr(2, 5),
+					                searchClassic(movieInfo[0],
+					                              stoi(movieInfo[1])))) {
+						cout << "Band input!" << endl;
+					}
+				}
+			}
+		} else {
+			if (!returnItem(line.substr(2, 5), <#Item *item#>)) {
+				cout << "Band input!" << endl;
+			}
+		}
+		myfile.close(); // Close input file stream
+	}
+}
 
 //TODO: Search classic(string title, string director) // check both ways director and title
 
-Classic* MovieStore::searchClassic(string s, int year){
-    for (auto &classic : classics) {
-        if( s == classic->getTitle() && year == classic->getYear() ){
-            return classic;
-        }else if( s == classic->getDirector() && year == classic->getYear() ){
-            return classic;
-        }else if( s == classic->getActor() && year == classic->getYear() ){
-            return classic;
-        }
-    }
-    return nullptr;
+Classic *MovieStore::searchClassic(string s, int year) {
+	for (auto &classic : classics) {
+		if (s == classic->getTitle() && year == classic->getYear()) {
+			return classic;
+		} else if (s == classic->getDirector() && year == classic->getYear()) {
+			return classic;
+		} else if (s == classic->getActor() && year == classic->getYear()) {
+			return classic;
+		}
+	}
+	return nullptr;
 }
-    
-Comedy* MovieStore::searchComedy(string s, int year){
-    for (auto &comedy : comedies) {
-        if( s == comedy->getTitle() && year == comedy->getYear() ){
-            return comedy;
-        }else if( s == comedy->getDirector() && year == comedy->getYear() ){
-            return comedy;
-        }
-    }
-    return nullptr;
+
+Comedy *MovieStore::searchComedy(string s, int year) {
+	for (auto &comedy : comedies) {
+		if (s == comedy->getTitle() && year == comedy->getYear()) {
+			return comedy;
+		} else if (s == comedy->getDirector() && year == comedy->getYear()) {
+			return comedy;
+		}
+	}
+	return nullptr;
 }
-Drama* MovieStore::searchDrama(string s, int year){
-    for (auto &drama : dramas) {
-        if( s == drama->getTitle() && year == drama->getYear() ){
-            return drama;
-        }else if( s == drama->getDirector() && year == drama->getYear() ){
-            return drama;
-        }
-    }
-    return nullptr;
+
+Drama *MovieStore::searchDrama(string s, int year) {
+	for (auto &drama : dramas) {
+		if (s == drama->getTitle() && year == drama->getYear()) {
+			return drama;
+		} else if (s == drama->getDirector() && year == drama->getYear()) {
+			return drama;
+		}
+	}
+	return nullptr;
 }
 
 //sorts all Dramas
@@ -186,25 +198,25 @@ void MovieStore::sortClassic() {
 // List all the movies
 // Sort the movies before output to the screen
 void MovieStore::inventory() {
-    sortDrama();
-    sortComedy();
-    sortClassic();
-    for (auto const &value: comedies){
-        if(value->getStock() > 0){
-            cout << value->getTitle();
-        }
-    }
-    for (auto const &value: dramas){
-        if(value->getStock() > 0){
-        cout << value->getTitle();
-        }
-    }
-	
-    for (auto const &value: classics){
-        if(value->getStock() > 0){
-        cout << value->getTitle();
-        }
-    }
+	sortDrama();
+	sortComedy();
+	sortClassic();
+	for (auto const &value: comedies) {
+		if (value->getStock() > 0) {
+			cout << value->getTitle();
+		}
+	}
+	for (auto const &value: dramas) {
+		if (value->getStock() > 0) {
+			cout << value->getTitle();
+		}
+	}
+
+	for (auto const &value: classics) {
+		if (value->getStock() > 0) {
+			cout << value->getTitle();
+		}
+	}
 }
 
 // List the viewing history of the customer
@@ -212,90 +224,96 @@ void MovieStore::inventory() {
 // Otherwise return false
 bool MovieStore::history(string id) {
 	// Fixed
-	for ( int i = 0; i < customers.size();i++) {
+	for (int i = 0; i < customers.size(); i++) {
 		for (auto &customer : customers[i]) {
-            if(customer->getID() == id){
-			customer->iterateHistory();
-                return true;
-            }
+			if (customer->getID() == id) {
+				customer->iterateHistory();
+				return true;
+			}
 		}
 	}
-    return false;
+	return false;
 }
 
 // Return true if successfully borrow from the movie store
 // Check if the movie is in stock
 // Return false if the movie is unavailable
 bool MovieStore::borrowItem(string ID, Item *item) {
-    for (int i = 0;i<comedies.size();i++){
-        if(comedies[i] == item){ // Item exists in the comedies
-            if(comedies[i]->getStock() >0){
-                comedies[i]->setStock(comedies[i]->getStock() -1); // Decrease the stock by one
-                return accessCustomer(ID)->borrowItem(item);
-            }
-        }
-    }
-    for (int i = 0;i<dramas.size();i++){
-        if(dramas[i] == item){ // Item exists in the dramas
-            if(dramas[i]->getStock() >0){
-                dramas[i]->setStock(dramas[i]->getStock() -1); // Decrease the stock by one
-                return accessCustomer(ID)->borrowItem(item);
-            }
-        }
-    }
-    for (int i = 0;i<classics.size();i++){
-        if(classics[i] == item){ // Item exists in the classics
-            if(classics[i]->getStock() >0){
-                classics[i]->setStock(classics[i]->getStock() -1); // Decrease the stock by one
-                return accessCustomer(ID)->borrowItem(item);
-            }
-        }
-    }
-    return false; // Item unavailable or stock = 0
+	for (int i = 0; i < comedies.size(); i++) {
+		if (comedies[i] == item) { // Item exists in the comedies
+			if (comedies[i]->getStock() > 0) {
+				comedies[i]->setStock(comedies[i]->getStock() -
+				                      1); // Decrease the stock by one
+				return accessCustomer(ID)->borrowItem(item);
+			}
+		}
+	}
+	for (int i = 0; i < dramas.size(); i++) {
+		if (dramas[i] == item) { // Item exists in the dramas
+			if (dramas[i]->getStock() > 0) {
+				dramas[i]->setStock(
+						dramas[i]->getStock() - 1); // Decrease the stock by one
+				return accessCustomer(ID)->borrowItem(item);
+			}
+		}
+	}
+	for (int i = 0; i < classics.size(); i++) {
+		if (classics[i] == item) { // Item exists in the classics
+			if (classics[i]->getStock() > 0) {
+				classics[i]->setStock(classics[i]->getStock() -
+				                      1); // Decrease the stock by one
+				return accessCustomer(ID)->borrowItem(item);
+			}
+		}
+	}
+	return false; // Item unavailable or stock = 0
 }
 
 // Return true if successfully return to the movie store
 //
 bool MovieStore::returnItem(string ID, Item *item) {
-    for (int i = 0;i<comedies.size();i++){
-        if(comedies[i] == item){ // Item exists in the comedies
-                comedies[i]->setStock(comedies[i]->getStock() + 1); // Increase the stock by one
-                return accessCustomer(ID)->returnItem(item);
-        }
-    }
-    for (int i = 0;i<dramas.size();i++){
-        if(dramas[i] == item){ // Item exists in the dramas
-                dramas[i]->setStock(dramas[i]->getStock() + 1); // Increase the stock by one
-                return accessCustomer(ID)->returnItem(item);
-        }
-    }
-    for (int i = 0;i<classics.size();i++){
-        if(classics[i] == item){ // Item exists in the classics
-                classics[i]->setStock(classics[i]->getStock() + 1); // Increase the stock by one
-                return accessCustomer(ID)->returnItem(item);
-        }
-    }
-    return false; // The movie doesn't exit
+	for (int i = 0; i < comedies.size(); i++) {
+		if (comedies[i] == item) { // Item exists in the comedies
+			comedies[i]->setStock(
+					comedies[i]->getStock() + 1); // Increase the stock by one
+			return accessCustomer(ID)->returnItem(item);
+		}
+	}
+	for (int i = 0; i < dramas.size(); i++) {
+		if (dramas[i] == item) { // Item exists in the dramas
+			dramas[i]->setStock(
+					dramas[i]->getStock() + 1); // Increase the stock by one
+			return accessCustomer(ID)->returnItem(item);
+		}
+	}
+	for (int i = 0; i < classics.size(); i++) {
+		if (classics[i] == item) { // Item exists in the classics
+			classics[i]->setStock(
+					classics[i]->getStock() + 1); // Increase the stock by one
+			return accessCustomer(ID)->returnItem(item);
+		}
+	}
+	return false; // The movie doesn't exit
 }
 
-int MovieStore::Hash(string key){
+int MovieStore::Hash(string key) {
 	int hash = 0;
 	int index;
 
-	for(int i = 0; i < key.size(); i++){
-		hash += (int)key[i];
+	for (int i = 0; i < key.size(); i++) {
+		hash += (int) key[i];
 	}
 
 	index = hash % 10;
 	return index;
 }
 
-void MovieStore::addCustomer(Customer *c){
+void MovieStore::addCustomer(Customer *c) {
 	int index = Hash(c->getID());
 	customers[index].push_back(c);
 }
 
-Customer* MovieStore::accessCustomer(string ID){
+Customer *MovieStore::accessCustomer(string ID) {
 	int index = Hash(ID);
 //	for (int i = 0; i < customers[index].size(); i++){
 //		if (customers[index]
@@ -303,31 +321,33 @@ Customer* MovieStore::accessCustomer(string ID){
 //	for(vector<Customer*>::iterator it = customers[index].begin(); it != end; ++it){
 //		if(it->getId== c->getID())
 //	}
-	for(auto const& value: customers[index]){
-		if(value->getID()==ID){
+	for (auto const &value: customers[index]) {
+		if (value->getID() == ID) {
 			return value;
 		}
 	}
 	return nullptr;
 }
 
-Classic* MovieStore::searchClassic(string director, int year){
+Classic *MovieStore::searchClassic(string title, int year) {
 	for (auto &classic : classics) {
-		if( title == classic->getDirector() && year == classic->getYear() ){
+		if (title == classic->getDirector() && year == classic->getYear()) {
 			return classic;
 		}
 	}
 }
-Comedy* MovieStore::searchComedy(string director, int year){
+
+Comedy *MovieStore::searchComedy(string director, int year) {
 	for (auto &comedy : comedies) {
-		if( title == comedy->getDirector() && year == comedy->getYear() ){
+		if (title == comedy->getDirector() && year == comedy->getYear()) {
 			return comedy;
 		}
 	}
 }
-Drama* MovieStore::searchDrama(string director, int year){
+
+Drama *MovieStore::searchDrama(string director, int year) {
 	for (auto &drama : dramas) {
-		if( title == drama->getDirector() && year == drama->getYear() ){
+		if (title == drama->getDirector() && year == drama->getYear()) {
 			return drama;
 		}
 	}
