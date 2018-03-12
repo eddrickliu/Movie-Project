@@ -16,8 +16,8 @@ private:
     string actor;
 
 public:
-    explicit Classic(int stock, string director, string title, string actor,
-                     int month, int year);
+    explicit Classic(int stock, string director, string title,
+                     string actor, int month, int year);
 
     string getActor() const;
 
@@ -32,6 +32,8 @@ public:
     friend istream &operator>>(istream &is, const Classic &c);
 
     bool operator==(const Classic &i) const;
+    bool operator>(const Classic &c) const;
+    bool operator<(const Classic &c) const;
 };
 
 #endif /* Classic_h */
