@@ -1,0 +1,15 @@
+Ass4 Submission
+
+Make graders life easy.
+
+Readme.txt
+
+Simple instructions to test assignment.
+
+To compile​: g++ -std=c++14 -g -Wall -Wextra  comedy.cpp classic.cpp customer.cpp main.cpp drama.cpp item.cpp movie_store.cpp movie.cpp
+
+To Run:​ ./ass4
+
+Will read data4movies.txt, data4customers.txt, data4commands.txt
+
+Nothing else is needed

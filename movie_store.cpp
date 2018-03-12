@@ -48,51 +48,88 @@ vector<string> MovieStore::split(const string &s, char delim) {
 
 // Method that takes in a string that is the file name containing all the the
 // movies
-void MovieStore::readMovies(string fileName) {
-	ifstream infile(fileName);
-	string line;
-	while (infile >> line) {
+void MovieStore::readMovies(string fileName){
+    ifstream in(fileName);
+    string title, director;
+    char comma, type;
+    int stock;
+    string bad;
 
-		vector<string> movieInfo = split(line, ',');
-		cout << movieInfo[1];
-		int stock = stoi(movieInfo[1]);
+    for(;;)
+    {
+        //comma eater is used to take the commas out of char input areas
+        in >> type >> comma >> stock >> comma;
+        getline(in, director, ',');
+        getline(in, title, ',');
+        if (in.eof())
+            break;
+        if(type == 'C')
+        {
+            string first;
+            string last;
+            int releaseMonth;
+            int releaseYear;
 
-		if (movieInfo[0] == "F") {
-			int year = stoi(line.substr(line.length() - 4));
-			Comedy *f = new Comedy(stock, movieInfo[2], movieInfo[3], year);
-			comedies.push_back(f);
-		} else if (movieInfo[0] == "D") {
-			int year = stoi(line.substr(line.length() - 4));
-			Drama *d = new Drama(stock, movieInfo[2], movieInfo[3], year);
-			dramas.push_back(d);
-		} else if (movieInfo[0] == "C") {
-			vector<string> classicInfo = split(movieInfo[4], ' ');
-			int month = stoi(classicInfo[1]);
-			int year = stoi(classicInfo[2]);
-			Classic *c = new Classic(stock, movieInfo[2], movieInfo[3],
-			                         classicInfo[0], month, year);
-			classics.push_back(c);
-		}
-	}
-	sortDrama();
-	sortComedy();
-	sortClassic();
+            in >> first >> last >> releaseMonth >> releaseYear;
+            string full = first + " " + last;
+            Classic *r = new Classic(stock, director, title, full, releaseMonth, releaseYear);
+            classics.push_back(r);
+
+        }
+        else if (type == 'F')
+        {
+            int year;
+            in >> year;
+            Comedy *r = new Comedy(year, director, title, stock );
+            comedies.push_back(r);
+        }
+        else if (type == 'D')
+        {
+            int year;
+            in >> year;
+            Drama *m = new Drama(year ,director, title, stock);
+            dramas.push_back(m);
+        }
+        else
+        {
+            getline(in, bad, '\n');
+
+            cout << "Bad input: " << endl  << type << ", "  << stock << ", " << title
+                 << ",  " << director << ", " << bad << endl;
+        }
+        //reset variables
+        type = ' ';
+        stock = 0;
+        director = "";
+        title = "";
+        bad = "";
+    }
 }
 
 //Method that takes in a string that is the file name containing all customers + ID
 void MovieStore::readCustomers(string fileName) {
-	ifstream infile(fileName);
-	string line;
-	while (infile >> line) {
+	ifstream in(fileName);
 
-		vector<string> customerInfo = split(line, ' ');
-		//int id = stoi(customerInfo[0]);
-		Customer *c = new Customer(customerInfo[0], customerInfo[1],
-		                           customerInfo[2]);
-		// TODO add customers to hash table
-		addCustomer(c);
-	}
+    string firstName, lastName;
+    string customerID;
+
+    int i = 0;
+    for (;;)
+    {
+        in >> customerID >> firstName >> lastName;
+        //ignores bad inputs.
+        in.ignore(144, '\n');
+        Customer *c = new Customer(customerID, lastName, firstName);
+
+        //customer object added to hashtable
+        addCustomer(c);
+
+        if (in.eof())
+            break;
+        i++;
+    }
 }
+
 
 //Method that takes in a string that is the file name containing all commands
 void MovieStore::readCommands(string fileName) {

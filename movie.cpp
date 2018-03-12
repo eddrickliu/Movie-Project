@@ -9,6 +9,7 @@ Movie::Movie(int stock, string director, string title, int year) : Item(stock,
                                                                         title) {
 	setYear(year);
 	setDirector(director);
+    //cout<< stock<<director<<title<<year<<endl;
 }
 
 

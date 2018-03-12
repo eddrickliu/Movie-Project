@@ -54,7 +54,7 @@ int main() {
 	m1->readMovies("./data4movies.txt");
 	m1->readCustomers("./data4customers.txt");
 	m1->readCommands("./data4commands.txt");
-	movieTests();
+	//movieTests();
 
 	return 0;
 }
