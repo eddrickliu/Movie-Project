@@ -15,7 +15,9 @@ using namespace std;
 
 class Drama : public Movie {
 public:
-	explicit Drama(int stock, string director, string title, int year);
+    explicit Drama(int stock,string director, string title,int year);
+    bool operator>(const Drama &d) const;
+    bool operator<(const Drama &d) const;
 };
 
 #endif /* Drama_h */

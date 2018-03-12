@@ -5,11 +5,12 @@
 #include "movie.h"
 #include <iostream>
 
-Movie::Movie(int year, string director, string title, int stock) : Item(stock,
-                                                                        title) {
+Movie::Movie(int stock, string director, string title, int year) : Item(stock,
+																		title) {
 	setYear(year);
 	setDirector(director);
 }
+
 
 bool Movie::setYear(int newYear) {
 	if (newYear < 1888 || newYear > 2018) {
@@ -38,8 +39,9 @@ string Movie::getDirector() const {
 }
 
 ostream &operator<<(ostream &os, const Movie &m) {
-	os << m.getYear() << m.getDirector() << m.getTitle() << m.getStock();
-	return os;
+    os << m.getYear() << " " << m.getDirector() <<
+       " " << m.getTitle() << " " << m.getStock();
+    return os;
 }
 
 istream &operator>>(istream &is, const Movie &m) {
