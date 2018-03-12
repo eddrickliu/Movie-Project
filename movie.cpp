@@ -6,7 +6,7 @@
 #include <iostream>
 
 Movie::Movie(int stock, string director, string title, int year) : Item(stock,
-																		title) {
+                                                                        title) {
 	setYear(year);
 	setDirector(director);
 }
@@ -39,9 +39,9 @@ string Movie::getDirector() const {
 }
 
 ostream &operator<<(ostream &os, const Movie &m) {
-    os << m.getYear() << " " << m.getDirector() <<
-       " " << m.getTitle() << " " << m.getStock();
-    return os;
+	os << m.getYear() << " " << m.getDirector() <<
+	   " " << m.getTitle() << " " << m.getStock();
+	return os;
 }
 
 istream &operator>>(istream &is, const Movie &m) {
@@ -49,9 +49,9 @@ istream &operator>>(istream &is, const Movie &m) {
 	return is;
 }
 
-bool Movie::operator==(const Movie &m) const{
+bool Movie::operator==(const Movie &m) const {
 	if (Item::operator==(m) == false) {
 		return false;
 	}
-	return ( this->director == m.director) &&  ( this->year == m.year);
+	return (this->director == m.director) && (this->year == m.year);
 }

@@ -36,3 +36,5 @@ CMakeLists.txt
 cmake-build-debug
 .DS_Store
 .comedy.cpp.swp
+ass4
+ass4.dSYM/
